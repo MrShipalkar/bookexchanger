@@ -1,10 +1,13 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
+
 // Import routes
-const sellerRoutes = require('./routes/sellerRoutes');
-const buyerRoutes = require('./routes/buyerRoutes'); // Corrected to buyerRoutes
-const adminRoutes = require('./routes/adminRoutes');
+const sellerRoutes = require('./routes/sellerRoutes'); // Seller routes
+const buyerRoutes = require('./routes/buyerRoutes');   // Buyer routes
+const adminRoutes = require('./routes/adminRoutes');   // Admin routes
+const bookRoutes = require('./routes/bookRoutes');     // Book routes
+const rentalRoutes = require('./routes/rentalRoutes'); // Rental routes
 
 dotenv.config();
 connectDB();
@@ -13,16 +16,19 @@ const app = express();
 app.use(express.json());
 
 // Use routes
-app.use('/api/seller', sellerRoutes); // Updated to match seller routes
-app.use('/api/buyer', buyerRoutes);   // Updated to match buyer routes
-app.use('/api/admin', adminRoutes);   // Correct admin routes
+app.use('/api/seller', sellerRoutes);
+app.use('/api/buyer', buyerRoutes);
+app.use('/api/admin', adminRoutes);
+app.use('/api/books', bookRoutes); // Add Book routes
+app.use('/api/rentals', rentalRoutes); // Add Rental routes
 
+// Root route
 app.get("/", (req, res) => {
   res.send("API is running...");
 });
 
+// Start the server
 const PORT = process.env.PORT || 5000;
-
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
