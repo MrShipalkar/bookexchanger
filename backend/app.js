@@ -16,11 +16,11 @@ const app = express();
 app.use(express.json());
 
 // Use routes
-app.use('/api/seller', sellerRoutes);
-app.use('/api/buyer', buyerRoutes);
-app.use('/api/admin', adminRoutes);
-app.use('/api/books', bookRoutes); // Add Book routes
-app.use('/api/rentals', rentalRoutes); // Add Rental routes
+app.use('/api/seller', sellerRoutes); // seller routes
+app.use('/api/buyer', buyerRoutes); // buyer routes
+app.use('/api/admin', adminRoutes); // admin routes
+app.use('/api/books', bookRoutes); //Book routes
+app.use('/api/rentals', rentalRoutes); //Rental routes
 
 // Root route
 app.get("/", (req, res) => {
