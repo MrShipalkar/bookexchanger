@@ -3,20 +3,43 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 // Seller signup
+// Seller signup
 const sellerSignup = async (req, res) => {
     try {
-        const { name, email, password, shopName, shopAddress } = req.body;
+        const { name, email, password, sellerType, shopName, shopAddress } = req.body;
 
+        // Check if sellerType is valid
+        if (!['shop owner', 'student'].includes(sellerType)) {
+            return res.status(400).json({ message: 'Invalid seller type. Must be "shop owner" or "student".' });
+        }
+
+        // Validate shop details for shop owners
+        if (sellerType === 'shop owner' && (!shopName || !shopAddress)) {
+            return res.status(400).json({ message: 'Shop name and address are required for shop owners.' });
+        }
+
+        // Check if seller already exists
         const existingSeller = await Seller.findOne({ email });
         if (existingSeller) return res.status(400).json({ message: 'Seller already exists' });
 
+        // Hash the password
         const hashedPassword = await bcrypt.hash(password, 10);
-        const seller = new Seller({ name, email, password: hashedPassword, shopName, shopAddress });
+
+        // Prepare seller data
+        const sellerData = { name, email, password: hashedPassword, sellerType };
+        if (sellerType === 'shop owner') {
+            sellerData.shopName = shopName;
+            sellerData.shopAddress = shopAddress;
+        }
+
+        // Save the seller
+        const seller = new Seller(sellerData);
         await seller.save();
 
+        // Generate JWT token
         const token = jwt.sign({ id: seller._id, role: 'seller' }, process.env.JWT_SECRET, { expiresIn: '1d' });
 
-        res.status(201).json({ token, message: 'Seller created successfully' });
+        res.status(201).json({ token, message: 'Seller created successfully', sellerType });
     } catch (error) {
         res.status(500).json({ message: 'Server error', error });
     }

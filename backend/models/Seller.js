@@ -4,8 +4,13 @@ const sellerSchema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    shopName: { type: String }, // Seller-specific field
-    shopAddress: { type: String }, // Optional
+    sellerType: { 
+        type: String, 
+        enum: ['shop owner', 'student'], 
+        required: true 
+    }, // New field to identify the type of seller
+    shopName: { type: String }, // Optional, only for shop owners
+    shopAddress: { type: String }, // Optional, only for shop owners
 }, {
     timestamps: true, // Automatically adds createdAt and updatedAt
 });
