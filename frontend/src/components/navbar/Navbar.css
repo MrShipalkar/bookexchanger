@@ -1,0 +1,87 @@
+/* Navbar Container */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 2rem;
+    background-color: #E74C3C; /* Red-orange background */
+    color: white;
+    border-radius: 20px;
+}
+
+/* Logo and Title */
+.navbar-logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.navbar-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar-title .highlight {
+    color: #3498DB; /* Blue color for the 'X' */
+}
+
+/* Navbar Links */
+.navbar-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.navbar-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+.navbar-links a:hover {
+    color: #F1C40F; /* Hover effect */
+}
+
+/* Navbar Buttons */
+.navbar-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-signup {
+    background-color: white;
+    color: #E74C3C;
+    border: 2px solid white;
+}
+
+.btn-signup:hover {
+    background-color: #E74C3C;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn-sell {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn-sell:hover {
+    background-color: white;
+    color: #E74C3C;
+}
