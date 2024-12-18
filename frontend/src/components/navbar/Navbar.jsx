@@ -28,7 +28,7 @@ const Navbar = () => {
                 <li><a href="/books">Books</a></li>
                 <li><a href="/about">About Us</a></li>
                 <li>
-                    <button className="btn btn-signup">Sign Up</button>
+                    <button className="btn btn-signup">Buy Books</button>
                 </li>
                 <li>
                     <button className="btn btn-sell">Sell Books</button>
