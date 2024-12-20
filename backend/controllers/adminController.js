@@ -1,7 +1,7 @@
 const Admin = require('../models/Admin');
 const Buyer = require('../models/Buyer');
 const Seller = require('../models/Seller');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 // Admin login
