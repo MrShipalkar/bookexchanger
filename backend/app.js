@@ -1,5 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const cors = require("cors"); // Import cors middleware
 const { spawn } = require("child_process");
 const axios = require("axios");
 const connectDB = require("./config/db");
@@ -16,6 +17,9 @@ connectDB();
 
 const app = express();
 app.use(express.json());
+
+// Enable CORS
+app.use(cors());
 
 // Start the Flask app as a subprocess
 const flaskProcess = spawn("python", ["./ml/app.py"]);
