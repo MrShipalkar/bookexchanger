@@ -2,18 +2,17 @@ import React from "react";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
 
-const Dashboard = () => {
+const Books = () => {
     return (
         <div>
             <Navbar />
             <main>
-                <h1>Dashboard</h1>
-                <p>Welcome to the BookExchanger Dashboard!</p>
-                {/* Add dashboard-specific components here */}
+                <h1>Books</h1>
+                <p>Explore our wide range of books!</p>
             </main>
             <Footer />
         </div>
     );
 };
 
-export default Dashboard;
+export default Books;

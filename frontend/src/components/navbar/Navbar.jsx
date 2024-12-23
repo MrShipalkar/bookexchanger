@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "./Navbar.css";
 import BuyerAuthModal from "../BuyerAuthModal/BuyerAuthModal"; // Import Buyer modal
 import SellerAuthModal from "../SellerAuthModal/SellerAuthModal"; // Import Seller modal
@@ -7,6 +8,8 @@ const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false); // State to toggle the dropdown menu
     const [isBuyerModalOpen, setIsBuyerModalOpen] = useState(false); // State to toggle the Buyer modal
     const [isSellerModalOpen, setIsSellerModalOpen] = useState(false); // State to toggle the Seller modal
+
+    const navigate = useNavigate(); // Initialize navigate
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen); // Toggle menu state
@@ -28,11 +31,15 @@ const Navbar = () => {
         setIsSellerModalOpen(false); // Close Seller modal
     };
 
+    const navigateToHome = () => {
+        navigate("/"); // Redirect to the homepage
+    };
+
     return (
         <>
             <nav className="navbar">
                 {/* Logo Section */}
-                <div className="navbar-logo">
+                <div className="navbar-logo" onClick={navigateToHome} style={{ cursor: "pointer" }}>
                     <span className="navbar-title">Book<span className="highlight">X</span>changer</span>
                 </div>
 
@@ -45,7 +52,7 @@ const Navbar = () => {
 
                 {/* Navigation Links */}
                 <ul className={`navbar-links ${isMenuOpen ? "active" : ""}`}>
-                    <li><a href="/">Home</a></li>
+                    <li><a onClick={navigateToHome} style={{ cursor: "pointer" }}>Home</a></li>
                     <li><a href="/books">Books</a></li>
                     <li><a href="/about">About Us</a></li>
                     <li>
